@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>BettingJesus wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+--ink:#0B1426;--ink800:#142038;--ink700:#1F2D4A;--ink600:#34425F;--ink500:#4A5468;
+--ink400:#6B7590;--ink300:#A9B4C8;--ink200:#D3D8E0;--ink100:#E9ECF1;--chalk:#F5F7FA;
+--gold:#F2A71B;--gold700:#8F5E05;--volt:#3DF59A;--volt700:#0A7A47;--alert:#D93A40;
+--vor:#5B3FA0;--vorbg:#EFEBF9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink100);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-size:15px;line-height:1.5}
+.xw{font-stretch:125%}
+.an{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink500)}
+a{color:inherit;text-decoration:none}
+
+/* chrome */
+.bar{background:var(--ink);color:#fff;padding:12px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;position:sticky;top:0;z-index:50}
+.bar h1{margin:0;font-size:15px;font-weight:700;font-stretch:112%}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{height:36px;padding:0 14px;border:0;border-radius:8px;background:var(--ink700);color:#fff;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:#fff;color:var(--ink)}
+.keybox{display:flex;gap:8px;align-items:center;margin-left:auto}
+.keybox input{height:36px;width:230px;padding:0 10px;border:1px solid var(--ink600);border-radius:8px;background:var(--ink800);color:#fff;font-family:inherit;font-size:12px}
+.keybox button{height:36px;padding:0 14px;border:0;border-radius:8px;background:var(--gold);color:var(--ink);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.note{background:#FDF1DA;color:#5C3F03;padding:10px 20px;font-size:13px;line-height:1.5}
+
+.stage{padding:28px 20px 60px;display:flex;justify-content:center}
+.screen{display:none}
+.screen.on{display:block}
+.phone{width:390px;background:var(--chalk);border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(11,20,38,.16)}
+.desk{width:100%;max-width:1360px;background:var(--chalk);border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(11,20,38,.16)}
+
+/* site */
+.hdr{background:var(--ink);height:60px;padding:0 16px;display:flex;align-items:center;justify-content:space-between}
+.lock{display:flex;align-items:flex-end;gap:8px}
+.lock svg{height:34px;width:auto}
+.wm{display:inline-flex;flex-direction:column;gap:3px;padding-bottom:1px}
+.wm .top{display:flex;justify-content:space-between;font-size:8px;font-weight:600;line-height:1;color:var(--volt)}
+.wm .mn{display:block;font-size:20px;font-weight:900;line-height:.82;color:#fff;text-transform:uppercase}
+.burger{width:24px;height:18px;display:flex;flex-direction:column;justify-content:space-between}
+.burger i{height:2px;background:#fff;border-radius:1px}
+.snav{background:#fff;border-bottom:1px solid var(--ink200);padding:10px 16px;display:flex;gap:18px;overflow-x:auto;font-size:14px;font-weight:700}
+.snav span{padding-bottom:8px;white-space:nowrap;color:var(--ink500);border-bottom:3px solid transparent}
+.snav span.on{color:var(--ink);border-bottom-color:var(--volt)}
+.disc{background:var(--ink100);padding:9px 16px;font-size:12px;line-height:1.4}
+.pad{padding:16px}
+.h1{font-size:30px;line-height:34px;font-weight:800;font-stretch:112%;margin:0}
+.disp{font-size:40px;line-height:38px;font-weight:900;text-transform:uppercase;margin:0}
+.rule{display:block;width:48px;height:5px;border-radius:3px;background:var(--volt);margin:12px 0}
+.lede{font-size:16px;line-height:26px;color:var(--ink500);margin:10px 0 0}
+.card{background:#fff;border:1px solid var(--ink200);border-radius:14px;padding:16px}
+.h2{font-size:20px;line-height:26px;font-weight:700;font-stretch:112%;margin:0 0 12px}
+.mtabs{display:flex;gap:20px;font-size:14px;font-weight:700;border-bottom:1px solid var(--ink200);margin:0 0 14px}
+.mtabs span{padding-bottom:8px;color:var(--ink500);border-bottom:3px solid transparent}
+.mtabs span.on{color:var(--ink);border-bottom-color:var(--volt)}
+.nod{border:2px dashed var(--ink400);background:var(--ink100);border-radius:14px;padding:14px}
+.prow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pname{font-size:14px;font-weight:600;width:76px}
+.od{font-variant-numeric:tabular-nums;font-weight:600;font-size:20px;height:44px;width:88px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#fff;color:var(--ink200)}
+.od.best{box-shadow:inset 0 0 0 2px var(--volt)}
+.bk{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.bk .lg{width:36px;height:36px;border-radius:8px;background:var(--ink200);flex:none}
+.bk .tx{flex:1;min-width:0}
+.bk .n{height:9px;width:54%;background:var(--ink200);border-radius:3px;display:block}
+.bk .s{height:7px;width:86%;background:var(--ink200);border-radius:3px;display:block;margin-top:5px}
+.cta{height:44px;padding:0 16px;border-radius:10px;background:var(--gold);color:var(--ink);font-size:13px;font-weight:700;display:flex;align-items:center;flex:none}
+.chip{height:36px;padding:0 14px;border-radius:10px;box-shadow:inset 0 0 0 1.5px var(--ink);font-size:13px;font-weight:700;display:inline-flex;align-items:center;margin:0 8px 8px 0}
+.rg{background:var(--ink);color:var(--ink300);padding:14px 16px;display:flex;gap:12px;align-items:center;font-size:12px}
+.rg b{color:#fff;box-shadow:inset 0 0 0 1.5px #fff;border-radius:6px;padding:3px 7px;flex:none}
+.sk{background:var(--ink200);border-radius:3px;display:block}
+
+/* vor */
+.vshell{min-height:480px}
+.vor{position:relative;width:100%;min-height:480px;border:2px solid var(--vor);background:var(--vorbg);border-radius:14px;overflow:hidden}
+.vor iframe{position:relative;z-index:2;display:block;width:100%;min-height:476px;border:0}
+.vph{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;background:var(--vorbg);color:#452F7D;font-size:13px;line-height:1.6}
+.vor.ok .vph{opacity:0;pointer-events:none}
+.vor.bad .vph{background:#FDF1DA;color:#5C3F03}
+.spin{width:22px;height:22px;border-radius:50%;border:2px solid #C3B6E0;border-top-color:var(--vor);animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* desktop */
+.dcols{display:flex;gap:24px;padding:24px;flex-wrap:wrap;align-items:flex-start}
+.dside{flex:1 1 220px;min-width:0}
+.dmain{flex:999 1 520px;min-width:0}
+.drail{flex:1 1 260px;min-width:0}
+.grid6{background:#fff;border-radius:14px;padding:14px;display:grid;grid-template-columns:90px repeat(6,minmax(0,1fr));gap:8px;align-items:center}
+.gh{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--ink500)}
+.g0{font-variant-numeric:tabular-nums;font-weight:600;font-size:15px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--chalk);color:var(--ink200)}
+.g0.best{background:#fff;box-shadow:inset 0 0 0 2px var(--volt)}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <h1>BettingJesus wireframe</h1>
+  <div class="tabs" role="group" aria-label="Screen">
+    <button data-s="home" aria-pressed="true">Home</button>
+    <button data-s="comp" aria-pressed="false">Competition</button>
+    <button data-s="fix" aria-pressed="false">Fixture</button>
+    <button data-s="desk" aria-pressed="false">Desktop</button>
+  </div>
+  <div class="keybox">
+    <label for="k" style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink300)">Vor key</label>
+    <input id="k" placeholder="paste to load widgets" autocomplete="off" spellcheck="false">
+    <button id="go">Load</button>
+  </div>
+</div>
+
+<div class="note" id="hostnote">Checking host&hellip;</div>
+
+<div class="stage">
+
+  <!-- HOME -->
+  <section class="screen on" id="s-home">
+    <div class="phone">
+      <div class="hdr">
+        <span class="lock">
+          <svg viewBox="38 21 74 107" aria-hidden="true"><use href="#face" fill="#fff"></use><use href="#crown" fill="#F2A71B"></use></svg>
+          <span class="wm"><span class="top"><span>B</span><span>E</span><span>T</span><span>T</span><span>I</span><span>N</span><span>G</span></span><span class="mn">Jesus</span></span>
+        </span>
+        <span class="burger"><i></i><i></i><i></i></span>
+      </div>
+      <div class="snav"><span class="on">Football</span><span>NFL</span><span>Basketball</span><span>MLB</span><span>NHL</span></div>
+      <div class="disc"><strong>Ad disclosure:</strong> we may earn a commission from links on this page.</div>
+      <div class="pad">
+        <h2 class="disp xw">Five sports.<br>One place.</h2>
+        <span class="rule"></span>
+        <p class="lede">35 competitions, priced across books, for people who bet across sports and across continents.</p>
+      </div>
+      <div class="pad" style="padding-top:0">
+        <div class="card" style="margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span style="font-size:15px;font-weight:700">Premier League</span><span style="flex:1"></span><span class="an">See all</span></div>
+          <div class="vshell"><div class="vor" data-sport="1" data-tourn="1204" data-event="0"><div class="vph"><span class="spin"></span><span>Vor Turbo &middot; sport 1 &middot; tournament 1204</span></div><iframe title="Vor predictions, Premier League"></iframe></div></div>
+        </div>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span style="font-size:15px;font-weight:700">NFL</span><span style="flex:1"></span><span class="an">See all</span></div>
+          <div class="vshell"><div class="vor" data-sport="4" data-tourn="1002" data-event="0"><div class="vph"><span class="spin"></span><span>Vor Turbo &middot; sport 4 &middot; tournament 1002</span></div><iframe title="Vor predictions, NFL"></iframe></div></div>
+        </div>
+      </div>
+      <div class="pad" style="padding-top:0">
+        <div class="card">
+          <h3 class="h2">Top sportsbooks</h3>
+          <div class="bk"><span class="lg"></span><span class="tx"><span class="n"></span><span class="s"></span></span><span class="cta">Visit</span></div>
+          <div class="bk" style="margin-bottom:0"><span class="lg"></span><span class="tx"><span class="n"></span><span class="s"></span></span><span class="cta">Visit</span></div>
+        </div>
+      </div>
+      <div class="rg"><b>18+</b><span>[Helpline for target market] &middot; <span style="color:#fff">Responsible gambling</span></span></div>
+    </div>
+  </section>
+
+  <!-- COMPETITION -->
+  <section class="screen" id="s-comp">
+    <div class="phone">
+      <div class="hdr">
+        <span class="lock">
+          <svg viewBox="38 21 74 107" aria-hidden="true"><use href="#face" fill="#fff"></use><use href="#crown" fill="#F2A71B"></use></svg>
+          <span class="wm"><span class="top"><span>B</span><span>E</span><span>T</span><span>T</span><span>I</span><span>N</span><span>G</span></span><span class="mn">Jesus</span></span>
+        </span>
+        <span class="burger"><i></i><i></i><i></i></span>
+      </div>
+      <div class="snav"><span class="on">Football</span><span>NFL</span><span>Basketball</span><span>MLB</span></div>
+      <div class="disc"><strong>Ad disclosure:</strong> we may earn a commission from links on this page.</div>
+      <div class="pad">
+        <div class="an" style="margin-bottom:8px">Football / Premier League</div>
+        <h2 class="h1">Premier League odds</h2>
+        <p class="lede">Every fixture, priced across the books that take your action, with the model's read underneath.</p>
+      </div>
+      <div class="pad" style="padding-top:0">
+        <div class="nod">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><span class="h2" style="margin:0">Best price</span><span class="an">No feed</span></div>
+          <div class="prow"><span class="pname">Arsenal</span><span style="flex:1"></span><span class="od best">0.00</span></div>
+          <div class="prow"><span class="pname">Draw</span><span style="flex:1"></span><span class="od">0.00</span></div>
+          <div class="prow" style="margin-bottom:0"><span class="pname">Liverpool</span><span style="flex:1"></span><span class="od">0.00</span></div>
+          <div class="an" style="margin-top:12px;line-height:1.5">Volt ring marks the best price. Movement reads through arrows and Ink, never red and green.</div>
+        </div>
+      </div>
+      <div class="pad" style="padding-top:16px">
+        <div class="vshell"><div class="vor" data-sport="1" data-tourn="1204" data-event="0"><div class="vph"><span class="spin"></span><span>Vor Turbo &middot; sport 1 &middot; tournament 1204 &middot; event 0</span></div><iframe title="Vor predictions, Premier League"></iframe></div></div>
+        <div class="an" style="margin-top:8px;line-height:1.5">Cross origin. The brand stops at this border and nothing inside is indexable.</div>
+      </div>
+      <div class="pad" style="padding-top:0">
+        <div class="card">
+          <h3 class="h2">Where to bet it</h3>
+          <div class="bk"><span class="lg"></span><span class="tx"><span class="n"></span><span class="s"></span></span><span class="cta">Visit</span></div>
+          <div class="bk" style="margin-bottom:0"><span class="lg"></span><span class="tx"><span class="n"></span><span class="s"></span></span><span class="cta">Visit</span></div>
+          <div class="an" style="margin-top:12px;line-height:1.5">Gold means money. One per card. Licence no. and accepted markets on the second line.</div>
+        </div>
+      </div>
+      <div class="pad" style="padding-top:0">
+        <div class="card">
+          <div class="an" style="margin-bottom:12px">Elsewhere in Football</div>
+          <span class="chip">Champions League</span><span class="chip">La Liga</span><span class="chip">Serie A</span>
+          <div class="an" style="margin-top:4px">Ink means the site. Navigation never uses Gold.</div>
+        </div>
+      </div>
+      <div class="rg"><b>18+</b><span>[Helpline for target market] &middot; <span style="color:#fff">Responsible gambling</span></span></div>
+    </div>
+  </section>
+
+  <!-- FIXTURE -->
+  <section class="screen" id="s-fix">
+    <div class="phone">
+      <div class="hdr">
+        <span class="lock">
+          <svg viewBox="38 21 74 107" aria-hidden="true"><use href="#face" fill="#fff"></use><use href="#crown" fill="#F2A71B"></use></svg>
+          <span class="wm"><span class="top"><span>B</span><span>E</span><span>T</span><span>T</span><span>I</span><span>N</span><span>G</span></span><span class="mn">Jesus</span></span>
+        </span>
+        <span class="burger"><i></i><i></i><i></i></span>
+      </div>
+      <div class="disc"><strong>Ad disclosure:</strong> we may earn a commission from links on this page.</div>
+      <div class="pad">
+        <div class="an" style="margin-bottom:8px">Football / Premier League / Arsenal v Liverpool</div>
+        <h2 class="h1">Arsenal vs Liverpool odds</h2>
+        <div style="margin-top:10px;font-size:13px;color:var(--ink500);display:flex;align-items:center;gap:8px">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--volt);flex:none"></span>
+          <span>Sat 19:30 BST &middot; <span class="an" style="color:var(--ink600)">[books compared] &middot; [updated]</span></span>
+        </div>
+      </div>
+      <div class="pad" style="padding-top:0">
+        <div class="mtabs"><span class="on">Match result</span><span>Handicap</span><span>Goals</span></div>
+        <div class="nod">
+          <div class="an" style="margin-bottom:12px">Best price, this market &middot; no feed</div>
+          <div class="prow"><span class="pname">Arsenal</span><span style="flex:1"></span><span class="od best">0.00</span></div>
+          <div class="prow"><span class="pname">Draw</span><span style="flex:1"></span><span class="od">0.00</span></div>
+          <div class="prow" style="margin-bottom:0"><span class="pname">Liverpool</span><span style="flex:1"></span><span class="od">0.00</span></div>
+        </div>
+      </div>
+      <div class="pad" style="padding-top:16px">
+        <div class="vshell"><div class="vor" data-sport="1" data-tourn="1204" data-event="0"><div class="vph"><span class="spin"></span><span>Vor Turbo &middot; event level<br>event id must map to Vor's own</span></div><iframe title="Vor predictions, fixture"></iframe></div></div>
+      </div>
+      <div class="pad" style="padding-top:16px">
+        <div class="card">
+          <h3 class="h2">The preview</h3>
+          <span class="sk" style="width:100%;height:7px;margin-bottom:8px"></span>
+          <span class="sk" style="width:94%;height:7px;margin-bottom:8px"></span>
+          <span class="sk" style="width:68%;height:7px"></span>
+          <div style="display:flex;gap:10px;align-items:center;border-top:1px solid var(--ink200);padding-top:12px;margin-top:14px">
+            <span class="sk" style="width:32px;height:32px;border-radius:16px"></span>
+            <span><span class="sk" style="width:80px;height:8px"></span><span class="sk" style="width:124px;height:7px;margin-top:5px"></span></span>
+          </div>
+          <div class="an" style="margin-top:12px;line-height:1.5">The non feed element, rule 2. The only reason thousands of fixture URLs do not read as scaled content.</div>
+        </div>
+      </div>
+      <div class="rg"><b>18+</b><span>[Helpline for target market] &middot; <span style="color:#fff">Responsible gambling</span></span></div>
+    </div>
+  </section>
+
+  <!-- DESKTOP -->
+  <section class="screen" id="s-desk">
+    <div class="desk">
+      <div class="hdr" style="height:68px;padding:0 24px">
+        <span class="lock">
+          <svg viewBox="38 21 74 107" aria-hidden="true" style="height:38px"><use href="#face" fill="#fff"></use><use href="#crown" fill="#F2A71B"></use></svg>
+          <span class="wm"><span class="top" style="font-size:9px"><span>B</span><span>E</span><span>T</span><span>T</span><span>I</span><span>N</span><span>G</span></span><span class="mn" style="font-size:23px">Jesus</span></span>
+        </span>
+        <nav style="display:flex;gap:20px;font-size:14px;font-weight:600;color:var(--ink300);margin-left:28px"><span style="color:#fff">Football</span><span>NFL</span><span>Basketball</span><span>Baseball</span><span>Ice Hockey</span></nav>
+        <span style="flex:1"></span>
+        <span style="height:40px;padding:0 18px;border-radius:10px;box-shadow:inset 0 0 0 1.5px #fff;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center">Odds format</span>
+      </div>
+      <div class="disc" style="padding:9px 24px"><strong>Ad disclosure:</strong> we may earn a commission from links on this page.</div>
+      <div class="dcols">
+        <div class="dside">
+          <div class="card">
+            <div class="an" style="margin-bottom:12px">Competitions in Football</div>
+            <span class="sk" style="width:90%;height:9px;margin-bottom:11px"></span>
+            <span class="sk" style="width:76%;height:9px;margin-bottom:11px"></span>
+            <span class="sk" style="width:84%;height:9px;margin-bottom:11px"></span>
+            <span class="sk" style="width:68%;height:9px;margin-bottom:11px"></span>
+            <span class="sk" style="width:80%;height:9px;margin-bottom:11px"></span>
+            <span class="sk" style="width:72%;height:9px"></span>
+          </div>
+          <div class="an" style="margin-top:14px;line-height:1.6">The left tree. Pure internal linking, and most of the crawl surface.</div>
+        </div>
+        <div class="dmain">
+          <div class="an" style="margin-bottom:10px">Football / Premier League</div>
+          <h2 class="disp xw" style="font-size:56px;line-height:.95">Premier League</h2>
+          <span class="rule" style="width:56px;height:6px"></span>
+          <p class="lede" style="font-size:17px;line-height:27px;max-width:640px">Every Premier League fixture, priced across the books that take your action.</p>
+          <div class="mtabs" style="margin:18px 0 14px"><span class="on">Match result</span><span>Handicap</span><span>Goals</span></div>
+          <div class="nod" style="padding:18px;margin-bottom:18px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px"><span style="font-size:24px;font-weight:800;font-stretch:112%">Compare the price</span><span class="an">No feed &middot; six book minimum</span></div>
+            <div class="grid6">
+              <span></span><span class="gh">A</span><span class="gh">B</span><span class="gh">C</span><span class="gh">D</span><span class="gh">E</span><span class="gh">F</span>
+              <span style="font-size:14px;font-weight:600">Home</span><span class="g0">0.00</span><span class="g0 best">0.00</span><span class="g0">0.00</span><span class="g0">0.00</span><span class="g0">0.00</span><span class="g0">0.00</span>
+              <span style="font-size:14px;font-weight:600">Draw</span><span class="g0">0.00</span><span class="g0">0.00</span><span class="g0">0.00</span><span class="g0 best">0.00</span><span class="g0">0.00</span><span class="g0">0.00</span>
+            </div>
+            <div class="an" style="margin-top:14px;line-height:1.6">The only module that is server rendered and indexable. It is the product, and it is empty until an odds feed is signed.</div>
+          </div>
+          <div class="vshell"><div class="vor" data-sport="1" data-tourn="1204" data-event="0"><div class="vph"><span class="spin"></span><span>Vor Turbo &middot; sport 1 &middot; tournament 1204 &middot; event 0</span></div><iframe title="Vor predictions, Premier League"></iframe></div></div>
+        </div>
+        <div class="drail">
+          <div class="card">
+            <div class="an" style="margin-bottom:14px">Top sportsbooks</div>
+            <div class="bk" style="margin-bottom:10px"><span class="lg"></span><span class="tx"><span class="n"></span><span class="s"></span></span></div>
+            <span class="cta" style="justify-content:center;margin-bottom:16px">Visit</span>
+            <div class="bk" style="margin-bottom:10px;border-top:1px solid var(--ink200);padding-top:16px"><span class="lg"></span><span class="tx"><span class="n"></span><span class="s"></span></span></div>
+            <span class="cta" style="justify-content:center">Visit</span>
+            <div class="an" style="margin-top:14px;line-height:1.6">Licence no. and accepted markets on every card. One Gold button per card.</div>
+          </div>
+          <div style="background:var(--ink);border-radius:14px;padding:16px;color:var(--ink300);font-size:12px;display:flex;gap:12px;margin-top:16px">
+            <b style="color:#fff;box-shadow:inset 0 0 0 1.5px #fff;border-radius:6px;padding:3px 7px;height:fit-content;flex:none;font-weight:700">18+</b>
+            <span style="line-height:1.6">[Helpline for target market]<br><span style="color:#fff">Responsible gambling</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<path id="face" fill-rule="evenodd" d="M42.7,125.7C42.2,125.4 42.2,125.0 42.5,122.7C42.9,119.7 43.0,119.6 45.0,118.9C45.5,118.7 46.5,118.3 47.1,118.0C47.7,117.7 48.8,117.1 49.5,116.7C50.3,116.4 51.2,115.8 51.6,115.6C52.0,115.3 52.6,114.9 53.1,114.6C57.9,111.7 64.1,104.1 66.1,98.9C66.4,98.3 66.8,97.2 67.1,96.5C67.5,95.4 68.6,91.5 69.0,89.6C69.5,87.4 69.9,82.4 69.8,80.7C69.6,79.5 69.9,78.9 70.4,78.6C71.0,78.4 73.8,78.3 74.4,78.5C75.4,78.8 75.4,78.9 75.5,82.8C75.6,87.1 75.4,89.1 74.4,93.2C73.6,96.8 73.1,98.4 71.8,101.6C70.8,104.0 70.3,105.0 68.0,108.5L65.9,111.5L63.4,114.1C60.8,116.6 57.8,119.0 56.2,120.0C54.8,120.9 47.2,124.7 46.2,125.0C44.1,125.7 43.1,125.9 42.7,125.7ZM104.1,124.5C100.8,124.2 100.2,123.8 99.0,120.6C98.6,119.7 98.3,118.9 98.3,118.8C98.3,118.7 98.1,117.8 97.8,116.9C97.6,116.0 97.2,114.6 97.1,113.9C97.0,113.2 96.8,112.2 96.7,111.6C96.4,110.4 96.1,106.8 96.3,106.4C96.5,105.8 97.1,105.6 98.7,105.5C101.4,105.2 101.3,105.2 102.3,108.5C102.6,109.4 103.0,110.4 103.1,110.6C103.3,110.9 103.6,111.6 103.8,112.2C104.5,114.2 107.6,120.3 108.8,122.0C109.6,123.1 109.8,124.1 109.3,124.3C109.0,124.5 105.8,124.6 104.1,124.5ZM91.2,122.7C89.5,122.5 87.4,121.7 87.1,121.2C86.8,120.9 86.4,119.5 86.3,118.8C86.1,118.1 85.8,111.0 85.8,108.5C85.8,105.0 86.0,104.6 87.8,105.0C88.3,105.1 89.3,105.3 90.0,105.4C91.6,105.6 92.0,106.1 92.0,108.2C92.0,110.5 92.7,116.1 93.5,119.3C94.2,122.0 94.2,122.1 93.8,122.5C93.4,122.9 93.0,122.9 91.2,122.7ZM79.0,118.7C75.7,117.2 72.9,115.4 72.0,114.4C71.2,113.5 71.2,113.2 72.2,111.8C75.2,107.5 76.5,105.2 77.2,103.0C77.7,101.4 78.3,101.2 79.7,102.2C80.1,102.5 80.6,102.8 81.0,103.0C82.3,103.6 82.4,104.1 82.0,106.5C81.7,108.0 81.6,112.6 81.6,115.9C81.8,120.0 81.8,120.0 79.0,118.7ZM44.4,112.6C44.1,112.4 44.1,110.7 44.4,108.6C44.6,106.7 44.9,106.1 45.5,105.7C49.8,103.0 50.6,102.3 52.1,100.5C56.8,94.5 58.4,90.0 58.7,81.4C58.8,78.2 58.8,78.2 62.0,78.4C64.7,78.4 64.8,78.6 64.8,82.4C64.8,86.5 64.5,88.0 63.0,93.2C62.4,95.5 61.8,97.0 61.0,98.5C59.9,100.5 58.1,103.3 57.3,104.1C56.9,104.6 56.3,105.3 56.0,105.7C53.2,109.0 45.5,113.7 44.4,112.6ZM90.0,99.6C87.3,99.3 83.6,98.2 81.5,97.0C79.7,96.0 79.7,95.8 80.0,93.0C80.1,92.3 80.3,90.9 80.3,90.1C80.4,89.2 80.5,88.0 80.6,87.3C80.6,86.7 80.7,84.6 80.7,82.6L80.7,79.1L81.0,78.8C81.4,78.3 81.7,78.3 90.7,78.4L99.0,78.4L99.3,78.8C99.5,79.0 99.8,79.6 100.0,80.2C100.2,80.8 100.6,81.8 100.9,82.5C101.4,83.7 102.0,85.1 102.7,87.1C102.9,87.6 103.2,88.3 103.3,88.5C103.4,88.8 103.6,89.4 103.8,89.8C103.9,90.2 104.1,90.9 104.3,91.3C105.1,93.1 106.5,96.9 106.5,97.3C106.5,98.4 105.6,98.7 101.6,99.4C99.2,99.8 92.7,99.9 90.0,99.6ZM46.5,97.6C46.3,97.4 46.3,97.1 46.6,94.8C46.8,93.8 47.0,92.1 47.1,91.2C47.2,90.3 47.5,88.8 47.6,87.8C47.8,86.9 48.0,85.5 48.1,84.7C48.7,80.4 49.0,79.1 49.5,78.7C50.1,78.3 52.3,78.3 52.8,78.8L53.1,79.1L53.1,80.9C53.1,86.8 50.9,93.7 48.2,96.6C47.2,97.7 46.8,97.9 46.5,97.6ZM95.2,91.0C96.8,90.5 98.2,88.8 98.2,87.6C98.2,87.0 97.4,86.1 96.2,85.4C94.5,84.3 91.9,84.2 90.0,85.1C88.9,85.6 87.3,87.4 87.1,88.3C86.9,89.3 88.5,90.5 90.7,91.1C91.7,91.4 94.1,91.3 95.2,91.0Z"></path>
+<path id="crown" d="M57.0,72.0C56.5,71.9 55.3,71.9 54.3,71.9C52.3,72.0 51.2,71.9 50.5,71.5C49.7,71.1 48.6,68.9 47.8,65.7C47.6,65.3 47.3,64.5 47.0,64.1C46.8,63.6 46.4,62.7 46.2,62.1C46.0,61.4 45.6,60.3 45.3,59.7C45.0,59.0 44.5,57.6 44.1,56.5C43.7,55.4 43.2,54.2 43.0,53.7C42.8,53.3 42.5,52.2 42.2,51.5C41.9,50.7 41.4,49.3 41.1,48.4C40.1,45.9 40.3,45.1 41.8,44.7C43.0,44.3 46.1,44.5 47.0,44.9C49.5,46.2 51.4,49.0 52.1,52.4C52.4,53.7 53.4,56.3 54.0,57.2C55.0,58.8 58.2,60.3 60.7,60.3C62.6,60.3 65.5,59.3 67.2,58.0C68.0,57.4 69.6,55.4 69.6,54.9C69.6,54.3 69.1,54.1 67.7,54.4C66.3,54.6 64.5,54.6 63.4,54.5C62.4,54.3 60.3,53.1 59.5,52.3C58.2,51.1 57.1,48.5 57.0,46.5C56.8,43.7 58.6,40.4 61.8,37.7C62.4,37.2 63.3,36.3 63.8,35.8C67.0,32.5 68.1,31.3 68.1,31.2C68.1,31.2 68.5,30.6 68.9,30.1C69.4,29.5 70.0,28.5 70.4,28.0C73.0,23.8 73.8,22.7 74.4,23.2C74.6,23.4 76.3,25.7 77.4,27.4C77.9,28.1 78.6,29.0 78.9,29.4C79.2,29.7 79.6,30.2 79.8,30.5C80.0,30.8 80.8,31.7 81.6,32.5C84.2,35.1 88.2,39.1 88.6,39.7C89.1,40.3 90.3,42.7 90.7,44.0C91.1,45.0 91.2,47.6 91.0,48.8C90.8,49.7 89.7,51.8 89.1,52.4C87.4,54.1 84.3,54.9 81.4,54.4C79.7,54.1 79.1,54.1 78.8,54.5C78.3,54.9 78.4,55.2 79.1,55.9C79.4,56.2 79.9,56.6 80.1,57.0C81.4,58.5 86.0,60.1 88.7,59.9C91.5,59.7 93.1,58.9 94.5,56.8C95.4,55.6 95.6,55.1 96.1,53.1C96.6,51.3 97.7,48.6 98.3,47.7C98.9,46.7 100.4,45.4 101.2,45.0C102.4,44.4 104.2,44.2 105.7,44.4C107.7,44.7 108.3,45.1 108.3,45.9C108.3,46.3 107.2,49.6 106.5,51.5C106.1,52.2 105.6,53.8 105.3,54.9C104.9,56.0 104.4,57.5 104.1,58.3C103.1,60.9 102.5,62.8 102.1,64.2C101.8,64.9 101.3,66.3 100.9,67.2C100.5,68.1 100.0,69.4 99.8,69.9C99.4,71.1 99.2,71.5 98.8,71.8C98.5,72.0 92.1,72.0 67.6,72.0C65.3,72.0 62.1,72.0 60.6,72.0C59.0,72.0 57.4,72.0 57.0,72.0Z"></path>
+</defs></svg>
+
+<script src="https://cdn.vorsports.com/js/iframe-resizer.parent.js"></script>
+<script>
+(function(){
+  var KEY="vor_api_key";
+  function g(id){return document.getElementById(id);}
+  function getKey(){try{return localStorage.getItem(KEY)||"";}catch(e){return "";}}
+  function setKey(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+
+  // screen switcher
+  var btns=document.querySelectorAll(".tabs button");
+  Array.prototype.forEach.call(btns,function(b){
+    b.addEventListener("click",function(){
+      Array.prototype.forEach.call(btns,function(o){o.setAttribute("aria-pressed",o===b?"true":"false");});
+      document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("on");});
+      g("s-"+b.dataset.s).classList.add("on");
+    });
+  });
+
+  var host=location.hostname;
+  g("hostnote").innerHTML = host
+    ? 'Add <code>'+host+'</code> to the DOMAINS tab in the Vor portal, paste your key above and press Load. Wireframe only, not for deployment.'
+    : 'You are on file:// so no host is sent and the widgets can never load. Serve this over HTTP.';
+
+  function load(){
+    var key=g("k").value.trim();
+    if(!key){ alert("Paste your Vor API key first."); return; }
+    setKey(key);
+    document.querySelectorAll(".vor").forEach(function(box){
+      var f=box.querySelector("iframe");
+      if(!f) return;
+      box.classList.remove("ok","bad");
+      var src="https://turbo.vorsports.com/?key="+encodeURIComponent(key)
+        +"&sport="+box.dataset.sport+"&tournament="+box.dataset.tourn+"&event="+box.dataset.event
+        +"&lan=en&cur=gbp&host="+location.hostname+"&path="+location.pathname;
+      f.setAttribute("src","about:blank");
+      setTimeout(function(){ f.setAttribute("src",src); },50);
+      var settled=false;
+      function ok(){ if(settled)return; settled=true; box.classList.add("ok"); }
+      setTimeout(function(){
+        if(settled)return; settled=true; box.classList.add("bad");
+        var p=box.querySelector(".vph");
+        if(p) p.innerHTML='<strong>No reply from the widget.</strong><br>Most likely <code>'+(location.hostname||"(empty)")+'</code> is not on the DOMAINS list, or this licence has no data for this competition.';
+      },12000);
+      if(typeof window.iframeResize==="function"){
+        try{ window.iframeResize({license:"GPLv3",waitForLoad:false,onResized:ok}, f); }catch(e){}
+      }
+    });
+  }
+
+  g("k").value=getKey();
+  g("go").addEventListener("click",load);
+  g("k").addEventListener("keydown",function(e){ if(e.key==="Enter") load(); });
+})();
+</script>
+</body>
+</html>
