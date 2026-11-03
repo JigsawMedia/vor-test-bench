@@ -95,6 +95,16 @@ a[data-todo]{cursor:help}
 a[data-todo]:hover{text-decoration:underline dotted;text-underline-offset:3px;opacity:.75}
 a[data-go]:hover{text-decoration:underline}
 a.fx[data-go]:hover,a.chip[data-go]:hover,a.lock[data-go]:hover{text-decoration:none;background:var(--bj-surface-alt)}
+
+/* Hover on a fixture, a tile or a competition chip draws the same Volt
+   outline that keyboard focus already draws, because the two mean the same
+   thing: this is the thing you are about to open. Drawn as an outline
+   rather than a ring inside the box, so nothing shifts on hover.
+   Gated on hover:hover so a tap on a phone does not leave it stuck on. */
+@media (hover:hover){
+  a.fx:hover{outline:2px solid var(--bj-accent);outline-offset:3px;border-radius:var(--r-sm)}
+  a.ftile:hover,a.chip:hover{outline:2px solid var(--bj-accent);outline-offset:3px}
+}
 a.lock[data-go]:hover{background:transparent;opacity:.85}
 p{margin:0 0 14px}
 p:last-child{margin-bottom:0}
@@ -219,6 +229,9 @@ img{max-width:100%}
    badge set later without touching the layout. */
 .tm{display:inline-flex;align-items:center;gap:7px;min-width:0;overflow:hidden;text-overflow:ellipsis}
 .crest{flex:none;width:22px;height:22px;border-radius:50%;background:var(--bj-surface-alt);box-shadow:inset 0 0 0 1px var(--bj-border);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;letter-spacing:.02em;color:var(--bj-text-muted)}
+/* A licensed badge image occupies the same slot as the monogram, so
+   filling the feed's crest map changes nothing about the layout. */
+img.crest{object-fit:contain;background:transparent;box-shadow:none}
 .vs{flex:none;font-size:12px;font-weight:700;color:var(--bj-text-muted)}
 
 /* chips */
