@@ -627,6 +627,23 @@ img.blogo{object-fit:contain;background:transparent;box-shadow:none;padding:0}
   g("k").value=getKey();
   g("go").addEventListener("click",load);
   g("k").addEventListener("keydown",function(e){ if(e.key==="Enter") load(); });
+
+  /* A saved key loads the widgets by itself. The Load button stays for
+     pasting a different key, but nobody should have to press it twice for
+     the same one. Deferred a tick so the first paint is not waiting on a
+     third party iframe. */
+  if(getKey()){ setTimeout(load,0); }
+
+  /* Changing screen swaps in widget containers that have never been
+     pointed at a source, so load those too, once, when they appear. */
+  window.addEventListener("hashchange",function(){
+    if(!getKey()) return;
+    var pending=false;
+    document.querySelectorAll(".vor iframe").forEach(function(f){
+      if(!f.getAttribute("src")) pending=true;
+    });
+    if(pending) setTimeout(load,0);
+  });
 })();
 </script>
 </body>
