@@ -231,8 +231,8 @@ img{max-width:100%}
 .nodata b{color:var(--bj-text);display:block;font-size:14px;margin-bottom:3px}
 
 /* vor widget */
-.vor{position:relative;width:100%;min-height:480px;border:2px solid var(--bj-vor);background:var(--bj-vor-bg);border-radius:var(--r-lg);overflow:hidden}
-.vor iframe{position:relative;z-index:2;display:block;width:100%;min-height:476px;border:0}
+.vor{position:relative;width:100%;min-height:900px;border:2px solid var(--bj-vor);background:var(--bj-vor-bg);border-radius:var(--r-lg);overflow:hidden}
+.vor iframe{position:relative;z-index:2;display:block;width:100%;min-height:896px;border:0}
 .vph{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;background:var(--bj-vor-bg);color:var(--bj-vor-text);font-size:13px;line-height:1.6}
 .vor.ok .vph{opacity:0;pointer-events:none}
 .vor.bad .vph{background:#FDF1DA;color:#5C3F03}
@@ -289,7 +289,7 @@ img{max-width:100%}
 .screen{display:none}
 .screen.on{display:block}
 </style>
-<script src="https://cdn.vorsports.com/js/iframeResizer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5.3.3/index.umd.js"></script>
 </head>
 <body>
 
@@ -434,7 +434,7 @@ img{max-width:100%}
         var p=box.querySelector(".vph");
         var noRez=typeof window.iframeResize!=="function";
         p.innerHTML = noRez
-          ? "<strong>The iframe-resizer script never loaded.</strong><br>Most likely an ad blocker or DNS filter is blocking cdn.vorsports.com. Gambling domains sit on most blocklists."
+          ? "<strong>The iframe-resizer script never loaded.</strong><br>The widget cannot report its height without it. Check the network tab for the script request, and note that gambling domains sit on most ad blocker and DNS filter lists."
           : "<strong>No reply from the widget.</strong><br>Either an ad blocker is blocking turbo.vorsports.com, or this licence returns no data for this competition. Press <em>Show widget anyway</em> to see what is behind this panel.";
       },12000);
 
