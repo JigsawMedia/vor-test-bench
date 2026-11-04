@@ -541,7 +541,11 @@ img.blogo{object-fit:contain;background:transparent;box-shadow:none;padding:0}
 .hero-mid.hb{min-height:160px;padding:0;display:block}
 .hb-full{padding:0}
 
-@media (min-width:760px){
+/* These are ad units: they sit in a full-bleed band on one screen and in a
+   half-width column on another, so they answer to their own box, not the
+   viewport. */
+.hero.hb{container-type:inline-size}
+@container (min-width:700px){
   .hb-wide{flex-direction:row;align-items:center;gap:22px;padding:18px 22px}
   .hb-wide .hb-brand{display:flex;flex:none;align-items:center;
     padding-right:22px;border-right:1px solid var(--bj-header-rule)}
@@ -589,7 +593,18 @@ img.blogo{object-fit:contain;background:transparent;box-shadow:none;padding:0}
 .hero-mid.hb .hb-btn{min-height:36px;font-size:13px;padding:0 14px}
 .hero-mid.hb .hb-label{margin-bottom:6px}
 
-@media (min-width:760px){
+/* 888x270: three columns have to share 888, so the type comes down and
+   the chip grid takes its natural width rather than being squeezed. */
+.hb-full{min-height:270px;display:flex;align-items:stretch}
+.hb-full .hb-wide{flex:1 1 auto;gap:18px;padding:22px}
+.hb-full .hb-head{font-size:26px;letter-spacing:-0.01em}
+.hb-full .hb-wide .hb-say{flex:0 1 auto;min-width:0;padding-right:18px}
+.hb-full .hb-wide .hb-grid{flex:0 0 auto;min-width:0}
+.hb-full .hb-wide .hb-chips{gap:6px}
+.hb-full .hb-chip{padding:7px 10px;font-size:10px;gap:6px}
+.hb-full .hb-dot{width:6px;height:6px}
+
+@container (min-width:700px){
   .hb-wide .hb-say{max-width:none;flex:0 0 auto}
   .hero-mid.hb .hb-wide{align-items:center}
   .hero-mid.hb .hb-chips{grid-template-rows:repeat(2,auto);
